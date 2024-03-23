@@ -20,6 +20,9 @@ nav ul{
 nav li{
     display: inline-block;
 }
+nav{
+    margin-bottom: 5px;
+}
 .menu{   
     font-family: "IBM Plex Sans Thai",sans-serif;
     text-decoration: none;
@@ -36,7 +39,31 @@ nav li{
     display: block;
 }
 .container{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 10px;
+    display: flex;
+    box-sizing: border-box;
+    max-width: 1980px;
+    flex-wrap: wrap;
+    margin: auto;
+}
+.item{
+    display: block;
+    box-sizing: border-box;
+    width: 50%;
+}
+.bio{
+    max-width: 700px;
+    margin: auto;
+    text-align: center;
+}
+.pic{
+    margin: auto;
+}
+.pic img{
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+}
+.pic-profile{
+    height: 500px;
 }
