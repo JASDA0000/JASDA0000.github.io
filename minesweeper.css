@@ -98,3 +98,15 @@ nav{
     border: none;
     border-radius: 5px;
 }
+.container{
+    display: flex;
+    box-sizing: border-box;
+    max-width: 960px;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+.item{
+    text-align: center;
+}

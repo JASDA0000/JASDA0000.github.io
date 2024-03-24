@@ -41,7 +41,7 @@ nav{
 .container{
     display: flex;
     box-sizing: border-box;
-    max-width: 1980px;
+    max-width: 960px;
     flex-wrap: wrap;
     margin: auto;
 }
@@ -65,5 +65,21 @@ nav{
     overflow: hidden;
 }
 .pic-profile{
-    height: 500px;
+    height: 300px;
+    border-radius: 50%;
+}
+.grid-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.logo{
+    width: 33.33%;
+    height: auto;
+}
+.item-grid{
+    text-align: center;
+}
+.my-images{
+    width: 300px;
+    height: 300px;
 }
