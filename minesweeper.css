@@ -110,3 +110,16 @@ nav{
 .item{
     text-align: center;
 }
+footer{
+    text-align: center;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    bottom: 0px;
+    position: fixed;
+    width: 100%;
+}
+.menu a:hover{
+    background-color: gray;
+    border-radius: 5px;
+}

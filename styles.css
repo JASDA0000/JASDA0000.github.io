@@ -38,17 +38,24 @@ nav{
     padding: 20px 25px;
     display: block;
 }
+.menu a:hover{
+    background-color: gray;
+    border-radius: 5px;
+}
 .container{
     display: flex;
     box-sizing: border-box;
     max-width: 960px;
     flex-wrap: wrap;
     margin: auto;
+    align-items: center;
+     justify-content: center;
 }
 .item{
     display: block;
     box-sizing: border-box;
     width: 50%;
+    justify-content: center;
 }
 .pic{
     margin: auto;
@@ -66,7 +73,8 @@ nav{
 .grid-container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 5px ;
+    grid-gap: 20px ;
+    padding: 20px;
 }
 .logo{
     width: 33.33%;
@@ -82,14 +90,38 @@ nav{
 .title-grid{
     grid-column: 1/4;
 }
-@media screen and (max-width:600px){
-    
+#title-head{
+    text-align: center;
+}
+footer{
+    text-align: center;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    bottom: 0px;
+    width: 100%;
+}
+@media screen and (max-width: 640px){
     .grid-container{
-        display: grid;
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+        box-sizing: border-box;
     }
-    .logo{
-        width: 64px;
-        height: 64px;
+    .item{
+        text-align: center;
+        width: 100%;
+    }
+    .item-grid{
+        width: 33.33%;
+        align-content: center;
+        margin: 0 auto;
+    }
+    .title-grid{
+        width: 100%;
+    }
+    .my-images{
+        width: 128px;
+        height: 128px;
     }
 }
