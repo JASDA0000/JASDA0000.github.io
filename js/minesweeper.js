@@ -1,28 +1,23 @@
-var board = [];
-var rows = 8;
-var columns = 8;
+var board = []; // เก็บตารางของเกม Minesweeper
+var rows = 8; // จำนวนแถวในตาราง
+var columns = 8; // จำนวนคอลัมน์ในตาราง
 
-var minesCount = 5;
-var minesLocation = []; // "2-2" , "3-4", "2-1"
+var minesCount = 5; // จำนวนของลูกศรในเกม Minesweeper
+var minesLocation = []; // พิกัดของลูกศร
 
-var tilesClicked = 0; //goal to click all titles except the ones containing mines
-var flagEnaled = false;
+var tilesClicked = 0; // จำนวนของช่องที่ถูกคลิก (เป้าหมายคือการคลิกช่องทุกช่องยกเว้นช่องที่มีลูกศร)
+var flagEnabled = false; // สถานะของธงที่เปิดใช้งานหรือไม่
 
-
-var gameOver = false;
+var gameOver = false; // สถานะของเกมว่าจบหรือยัง
 
 window.onload = function() {
-    startGame();
+    startGame(); // เริ่มเกมเมื่อหน้าเว็บโหลดเสร็จ
 }
-function setMines(){
-    // minesLocation.push("2-2");
-    // minesLocation.push("2-3");
-    // minesLocation.push("5-6");
-    // minesLocation.push("3-4");
-    // minesLocation.push("1-1");
 
+// ฟังก์ชันสำหรับกำหนดพิกัดของลูกศร
+function setMines(){
     let minesLeft = minesCount;
-    while (minesLeft > 0){ "1-1"
+    while (minesLeft > 0){
         let r = Math.floor(Math.random() * rows);
         let c = Math.floor(Math.random() * columns);
         let id = r.toString() + "-" + c.toString();
@@ -34,16 +29,17 @@ function setMines(){
         }
     }
 }
+
+// เริ่มเกม
 function startGame() {
     document.getElementById("mines-count").innerHTML = minesCount;
     document.getElementById("flag-button").addEventListener("click", setFlag);
     setMines();
 
-    //populate our board
+    //สร้างตาราง
     for (let r = 0; r < rows; r++) {
         let row = []
         for (let c = 0; c < columns; c++){
-            //<div id="0-0"></div>
             let tile = document.createElement("div");
             tile.id = r.toString() + "-" + c.toString();
             tile.addEventListener("click", clickTile);
@@ -56,25 +52,26 @@ function startGame() {
     console.log(board);
 }
 
+// สลับสถานะธง
 function setFlag(){
-    if(flagEnaled) {
-        flagEnaled = false;
+    if(flagEnabled) {
+        flagEnabled = false;
         document.getElementById("flag-button").style.backgroundColor = "lightgray";
     }
     else {
-        flagEnaled = true;
+        flagEnabled = true;
         document.getElementById("flag-button").style.backgroundColor = "darkgray";
     }
 }
 
-
+// จัดการเมื่อคลิกที่ช่อง
 function clickTile() {
     if (gameOver || this.classList.contains("tile-clicked")){
         return;
     }
 
     let tile = this;
-    if (flagEnaled) {
+    if (flagEnabled) {
         if(tile.innerText == ""){
             tile.innerText = "🚩";
         }
@@ -91,13 +88,14 @@ function clickTile() {
         return;
     }
 
-    let coords = tile.id.split("-"); // "0-0" -> ["0", "0"]
+    let coords = tile.id.split("-");
     let r = parseInt(coords[0]);
     let c = parseInt(coords[1]);
     checkMine(r, c);
 
 }
 
+// โชว์ลูกศรทั้งหมด
 function revealMines() {
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < columns; c++) {
@@ -110,6 +108,7 @@ function revealMines() {
     }
 }
 
+// ตรวจสอบลูกศร
 function checkMine(r, c) {
     if (r < 0 || r >= rows || c < 0 || c >= columns)
     {
@@ -123,38 +122,32 @@ function checkMine(r, c) {
 
     let minesFound = 0;
 
-    //top 3
-    minesFound += checkTile(r-1, c-1); //top left 
-    minesFound += checkTile(r-1, c); //top 
-    minesFound += checkTile(r-1, c+1); //top right 
+    minesFound += checkTile(r-1, c-1);
+    minesFound += checkTile(r-1, c);
+    minesFound += checkTile(r-1, c+1);
     
-    //left and right
-    minesFound += checkTile(r, c-1); //left
-    minesFound += checkTile(r, c+1); //right
+    minesFound += checkTile(r, c-1);
+    minesFound += checkTile(r, c+1);
 
-    //bottom 3
-    minesFound += checkTile(r+1, c-1); //bottom left
-    minesFound += checkTile(r+1, c); //bottom
-    minesFound += checkTile(r+1, c+1); //bottom right
+    minesFound += checkTile(r+1, c-1);
+    minesFound += checkTile(r+1, c);
+    minesFound += checkTile(r+1, c+1);
 
     if (minesFound > 0) {
         board[r][c].innerText = minesFound;
         board[r][c].classList.add("x" + minesFound.toString());
     }
     else {
-        //top3
-        checkMine(r-1, c-1); // top left
-        checkMine(r-1, c); //top
-        checkMine(r-1, c+1); //top right
+        checkMine(r-1, c-1);
+        checkMine(r-1, c);
+        checkMine(r-1, c+1);
 
-        //left and right
-        checkMine(r, c-1); //left
-        checkMine(r, c+1); //right
+        checkMine(r, c-1);
+        checkMine(r, c+1);
 
-        //bottom 3 
-        checkMine(r-1, c-1); //bottom left
-        checkMine(r-1, c); //bottom
-        checkMine(r-1, c+1); //bottom right
+        checkMine(r+1, c-1);
+        checkMine(r+1, c);
+        checkMine(r+1, c+1);
     }
 
     if(tilesClicked == rows * columns - minesCount){
@@ -163,6 +156,7 @@ function checkMine(r, c) {
     }
 }
 
+// ตรวจสอบช่องที่คลิก
 function checkTile(r, c) {
     if (r < 0 || r >= rows || c < 0 || c >= columns)
     {

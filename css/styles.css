@@ -118,7 +118,7 @@ footer{
         width: 100%;
     }
     .item-grid{
-        width: 33.33%;
+        width: 100%;
         align-content: center;
         margin: 0 auto;
     }
@@ -126,7 +126,9 @@ footer{
         width: 100%;
     }
     .my-images{
+        width: 300px;
+    }
+    .logo{
         width: 128px;
-        height: 128px;
     }
 }
