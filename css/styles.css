@@ -4,7 +4,7 @@
 }
 body{
     background-color: #fef8e6;
-    font-family: JetBrains Mono;
+    font-family: "JetBrains Mono",sans-serif;
 }
 header{
     display: flex;
@@ -130,5 +130,8 @@ footer{
     }
     .logo{
         width: 128px;
+    }
+    #Home-logo{
+        width: 290px;
     }
 }
